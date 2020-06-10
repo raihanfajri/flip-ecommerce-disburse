@@ -11,4 +11,8 @@ Env::load();
 
 Router::get("/", "DisburseController@detail");
 
+Router::post("/api/disburse", "DisburseController@create");
+
+Router::get("/api/disburse/list", "DisburseController@list");
+
 Router::run();

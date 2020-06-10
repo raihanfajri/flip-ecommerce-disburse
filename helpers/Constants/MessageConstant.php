@@ -1,0 +1,13 @@
+<?php
+
+namespace helpers\Constants;
+
+class MessageConstant {
+
+    const MESSAGE_DEFAULT = "Success";
+    const MESSAGE_NOT_FOUND = "Couldn't find any data";
+    const MESSAGE_CODE_404_NOT_FOUND = "404 resource not found";
+    const MESSAGE_CODE_405_NOT_ALLOWED = "405 method not allowed";
+    const MESSAGE_CREATE_FAILED = "Data created";
+
+}

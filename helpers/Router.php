@@ -2,7 +2,10 @@
 
 namespace helpers;
 
-use Exception;
+use helpers\Constants\ErrorConstant;
+use helpers\Constants\MessageConstant;
+use helpers\Exception\BaseException;
+use helpers\Http\Request;
 
 class Router {
 
@@ -13,9 +16,7 @@ class Router {
             $path = "/";
         }
 
-        self::$avail_routes[$path] = [
-            $method => $function
-        ];
+        self::$avail_routes[$path][$method] = $function;
     }
 
     public static function post($path, $function) {
@@ -32,23 +33,28 @@ class Router {
             $path = $parsed_url['path'];
 
             if (!isset(self::$avail_routes[$path])) {
-                echo "404 not found";
-                return;
+                throw new BaseException(
+                    MessageConstant::MESSAGE_CODE_404_NOT_FOUND, 
+                    ErrorConstant::ERROR_CODE_404_NOT_FOUND, 
+                    404);
             }
 
             $method = $_SERVER['REQUEST_METHOD'];
 
             if (!isset (self::$avail_routes[$path][$method])) {
-                echo "Method not allowed";
-                return;
+                throw new BaseException(
+                    MessageConstant::MESSAGE_CODE_405_NOT_ALLOWED, 
+                    ErrorConstant::ERROR_CODE_404_NOT_FOUND,
+                    405);
             }
 
             $function = self::$avail_routes[$path][$method];
             self::execFunction($function);
+            return;
         }
-        catch(Exception $e) {
+        catch(BaseException $e) {
             Log::error($e);
-            throw new Exception($e->getMessage(), $e->getCode());
+            $e->send();
         }       
     }
 
@@ -60,6 +66,9 @@ class Router {
 
         $controller = new $controller_name();
 
-        return $controller->$function_name($_REQUEST);
+        $request = new Request();
+
+        $controller->$function_name($request);
+        return;
     }
 }
