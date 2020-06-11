@@ -30,6 +30,9 @@ docker run -d --name flip-ecommerce-disburse -v /Users/raihan/Documents/Lain-lai
 
 ```
 php -S localhost:3005 -t public
+cp update-cron /etc/cron.d/update-cron
+chmod 0644 /etc/cron.d/update-cron
+crontab /etc/cron.d/update-cron
 ```
 
 Open localhost:3005 on your local web browser.
