@@ -23,6 +23,10 @@ class Router {
         self::register($path, "POST", $function);
     }
 
+    public static function patch($path, $function) {
+        self::register($path, "PATCH", $function);
+    }
+
     public static function get($path, $function) {
         self::register($path, "GET", $function);
     }
@@ -44,7 +48,7 @@ class Router {
             if (!isset (self::$avail_routes[$path][$method])) {
                 throw new BaseException(
                     MessageConstant::MESSAGE_CODE_405_NOT_ALLOWED, 
-                    ErrorConstant::ERROR_CODE_404_NOT_FOUND,
+                    ErrorConstant::ERROR_CODE_405_NOT_ALLOWED ,
                     405);
             }
 

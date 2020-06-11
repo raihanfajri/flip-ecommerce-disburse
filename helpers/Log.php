@@ -12,16 +12,16 @@ class Log {
        
     }
 
-    public static function info(string $log) {
+    public static function info(string $log, $log_name = "") {
         $errorLog = "Info : $log";
 
-        self::write($errorLog);
+        self::write($errorLog, $log_name);
     }
 
-    public static function error(string $log) {
+    public static function error(string $log, $log_name = "") {
         $errorLog = "Error : $log";
 
-        self::write($errorLog);
+        self::write($errorLog, $log_name);
     }
 
     private static function write(string $log, $log_name = null) {

@@ -3,7 +3,6 @@
 namespace models\Endpoints;
 
 use helpers\Http\Curl\Client;
-use helpers\Log;
 
 class BaseEndpointModel extends Client {
 
@@ -17,11 +16,14 @@ class BaseEndpointModel extends Client {
         if (class_exists($modelName)) {
             $model = new $modelName();
 
-            foreach ($body as $key => $value) {
-                if (property_exists($model, $key)) {
-                    $model->$key = $value;
+            if (is_iterable($body)) {
+                foreach ($body as $key => $value) {
+                    if (property_exists($model, $key)) {
+                        $model->$key = $value;
+                    }
                 }
             }
+            
             $this->response = $model;
         }
     }

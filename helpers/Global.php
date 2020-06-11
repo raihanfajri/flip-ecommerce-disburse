@@ -26,7 +26,7 @@ if (! function_exists('config')) {
             return $default;
         }
         
-        $config = require __DIR__. "/../config/database.php";;
+        $config = require __DIR__. "/../config/$config_name.php";;
 
         if (empty($key)) {
             return $config;

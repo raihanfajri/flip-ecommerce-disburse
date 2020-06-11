@@ -13,6 +13,8 @@ Router::get("/", "DisburseController@detail");
 
 Router::post("/api/disburse", "DisburseController@create");
 
+Router::patch("/api/disburse", "DisburseController@update");
+
 Router::get("/api/disburse/list", "DisburseController@list");
 
 Router::run();

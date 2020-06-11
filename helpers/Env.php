@@ -14,7 +14,7 @@ class Env {
                 $exploded_line = explode('=', $line);
 
                 if (sizeof ($exploded_line) >= 2) {
-                    $key = $exploded_line[0];
+                    $key = trim($exploded_line[0]);
 
                     $value = trim($exploded_line[1]);
                     

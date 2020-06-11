@@ -7,14 +7,14 @@ class DisbursementStatusEndpointModel extends BaseEndpointModel {
     protected $res_model = 'DisburseResponseModel';
 
     protected function baseUrl() {
-        return env("BASE_URL_FLIP", "localhost:3005");
+        return env("BASE_URL_FLIP", "https://nextar.flip.id");
     }
 
     protected function pathUrl() {
-        return "/disburse/";
+        return "/disburse";
     }
 
     protected function setMethod() {
-        return "POST";
+        return "GET";
     }
 }

@@ -4,6 +4,7 @@ namespace response;
 
 use helpers\Constants\ErrorConstant;
 use helpers\Constants\MessageConstant;
+use helpers\Log;
 
 class BaseResponse {
 
@@ -38,6 +39,10 @@ class BaseResponse {
         $this->view = $path_to_view;
     }
 
+    public function withDataTransformer($transformer) {
+        $this->transformer = $transformer;
+    }
+
     public function send() {
         $jsonBody = $this->transform();
 
@@ -53,7 +58,7 @@ class BaseResponse {
             'message' => $this->message,
         ];
 
-        if (!empty($this->data)) {
+        if (!is_null($this->data)) {
             $response['data'] = $this->transformData();
         }
 
@@ -61,11 +66,15 @@ class BaseResponse {
     }
 
     private function transformData() {
+        if (empty($this->data)) {
+            return $this->data;
+        }
+
         if (empty($this->transformer)) {
             return $this->data;
         }
 
-        if (isset($this->data[0])) {
+        if (gettype($this->data) == "array" && isset($this->data[0])) {
             $newData = [];
 
             foreach ($this->data as $data) {
@@ -89,7 +98,6 @@ class BaseResponse {
             $view = $this->view;
         }
 
-        header('Content-type: text/html');
         return $view;
     }
 }

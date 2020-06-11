@@ -12,7 +12,7 @@ class DisburseResponseModel extends BaseResponseModel {
     public $account_number;
     public $beneficiary_name;
     public $remark;
-    public $recipt;
+    public $receipt;
     public $time_served;
     public $fee;
 

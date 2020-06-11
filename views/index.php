@@ -16,21 +16,21 @@
             <div class="wrapper">
                 <div class="box-1">
                     <label>Bank Code :</label>
-                    <input id="bank_code" type="text">
+                    <input id="bank_code" type="text" required>
                 </div>
                 <div class="box-1">
                     <label>Account Number :</label>
-                    <input id="acc_number" type="text">
+                    <input id="acc_number" type="text" required>
                 </div>
             </div>
             <div class="wrapper">
                 <div class="box-1">
                     <label>Amount :</label>
-                    <input id="amount" type="number" min="0">
+                    <input id="amount" type="number" min="0" required>
                 </div>
                 <div class="box-1">
                     <label>Remark :</label>
-                    <input id="remark" type="text">
+                    <input id="remark" type="text" required>
                 </div>
             </div>
             <div class="wrapper">
@@ -38,7 +38,7 @@
             </div>
             <div class="wrapper">
                 <div class="box-1" style="text-align: center;">
-                    <button type="button" id="submitButton">Submit</button>
+                    <button type="button" id="submitButton" onclick="createDisburse()">Submit</button>
                 </div>
             </div>
           </form>
@@ -47,8 +47,8 @@
     <div class="wrapper">
       <div class="box box-2">
         <div class="output">
-          <label>Disburse List :</label>
-          <table>
+          <label>Disburse List : <button type="button" onclick="getList()" style="background-color:cornflowerblue">Refresh</button></label>
+          <table id="data_table">
             <tr>
                 <th>REF ID</th>
                 <th>Bank Code</th>
@@ -56,11 +56,11 @@
                 <th>Amount</th>
                 <th>Remark</th>
                 <th>Fee</th>
-                <th>Reciept</th>
-                <th>Disbursed Date</th>
+                <th>Receipt</th>
+                <th>Time Served</th>
                 <th>Status</th>
             </tr>
-            </table>
+          </table>
         </div>
       </div>
     </div>
