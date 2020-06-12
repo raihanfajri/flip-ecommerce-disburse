@@ -23,7 +23,7 @@ docker run --name mysql-server -e MYSQL_ROOT_PASSWORD=password --expose=33006 -p
 docker image rm flip-ecommerce-disburse --force
 docker build -t flip-ecommerce-disburse .
 docker container rm flip-ecommerce-disburse --force 
-docker run -d --name flip-ecommerce-disburse -v pathtoproject/flip-ecommerce-disburse/logs/:/var/www/html/logs/ --expose=3005 -p 3005:80 --restart unless-stopped flip-commerce-disburse
+docker run -d --name flip-ecommerce-disburse -v pathtoproject/flip-ecommerce-disburse/logs/:/var/www/html/logs/ --expose=3005 -p 3005:80 --restart unless-stopped flip-ecommerce-disburse
 docker exec flip-ecommerce-disburse cron
 ```
 
