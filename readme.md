@@ -1,11 +1,13 @@
 # Recruitment Mini Project Installation 
 
+Change {{pathtoproject}} to where your local repository located.
+
 Change .env-dist according to your local environtment.
 
 Execute these commands on your terminal.
 
 ```
-cd pathtoproject/flip-ecommerce-disburse
+cd {{pathtoproject}}/flip-ecommerce-disburse
 ```
 
 ## Docker
@@ -23,7 +25,7 @@ docker run --name mysql-server -e MYSQL_ROOT_PASSWORD=password --expose=33006 -p
 docker image rm flip-ecommerce-disburse --force
 docker build -t flip-ecommerce-disburse .
 docker container rm flip-ecommerce-disburse --force 
-docker run -d --name flip-ecommerce-disburse -v pathtoproject/flip-ecommerce-disburse/logs/:/var/www/html/logs/ --expose=3005 -p 3005:80 --restart unless-stopped flip-ecommerce-disburse
+docker run -d --name flip-ecommerce-disburse -v {{pathtoproject}}/flip-ecommerce-disburse/logs/:/var/www/html/logs/ --expose=3005 -p 3005:80 --restart unless-stopped flip-ecommerce-disburse
 docker exec flip-ecommerce-disburse cron
 ```
 
