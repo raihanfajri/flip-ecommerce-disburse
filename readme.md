@@ -27,15 +27,6 @@ docker run -d --name flip-ecommerce-disburse -v pathtoproject/flip-ecommerce-dis
 docker exec flip-ecommerce-disburse cron
 ```
 
-## PHP CLI 7.4
-
-```
-php -S localhost:3005 -t public
-cp update-cron /etc/cron.d/update-cron
-chmod 0644 /etc/cron.d/update-cron
-crontab /etc/cron.d/update-cron
-```
-
 Open localhost:3005 on your local web browser.
 Submit the data that you want to disbursed and click submit.
 
