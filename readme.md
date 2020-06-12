@@ -14,7 +14,7 @@ cd pathtoproject/flip-ecommerce-disburse
 
 ```
 docker pull mysql
-docker run --name mysql-server -e MYSQL_ROOT_PASSWORD=password --expose=33006 -p 33006:3306
+docker run --name mysql-server -e MYSQL_ROOT_PASSWORD=password --expose=33006 -p 33006:3306 mysql
 ```
 
 ### Create Project Image
@@ -23,7 +23,8 @@ docker run --name mysql-server -e MYSQL_ROOT_PASSWORD=password --expose=33006 -p
 docker image rm flip-ecommerce-disburse --force
 docker build -t flip-ecommerce-disburse .
 docker container rm flip-ecommerce-disburse --force 
-docker run -d --name flip-ecommerce-disburse -v /Users/raihan/Documents/Lain-lain/flip-ecommerce-disburse/logs/:/var/www/html/logs/ --expose=3005 -p 3005:80 --restart unless-stopped flip-commerce-disburse
+docker run -d --name flip-ecommerce-disburse -v pathtoproject/flip-ecommerce-disburse/logs/:/var/www/html/logs/ --expose=3005 -p 3005:80 --restart unless-stopped flip-commerce-disburse
+docker exec flip-ecommerce-disburse cron
 ```
 
 ## PHP CLI 7.4

@@ -3,17 +3,27 @@
 require_once __DIR__ . "/../helpers/Http/Curl/Client.php";
 require_once __DIR__ . "/../helpers/Log.php";
 require_once __DIR__ . "/../helpers/Constants/DisburseConstant.php";
+require_once __DIR__ . "/../helpers/Env.php";
+require_once __DIR__ . "/../helpers/Global.php";
+
+date_default_timezone_set('Asia/Jakarta');
 
 use helpers\Constants\DisburseConstant;
+use helpers\Env;
 use helpers\Http\Curl\Client;
 use helpers\Log;
 
+Env::load();
+
 $today = Date("Y-m-d");
 $log_name = "scheduler-$today.log";
+$local_ip = env('LOCAL_IP', '');
+$local_port = env('LOCAL_PORT', '3005');
+$local_url = "$local_ip:$local_port";
 
 Log::info("Scheduler starting....", $log_name);
 
-$client = new Client("localhost:3005", "/api/disburse/list", "GET");
+$client = new Client($local_url, "/api/disburse/list", "GET");
 $client->intialize(['status' => DisburseConstant::STATUS_PENDING]);
 $client->callEndpoint();
 
@@ -36,7 +46,7 @@ if (empty($body['data'])) {
 
 Log::info(count($body['data']) . " data will be processed", $log_name);
 
-$client_update = new Client("localhost:3005", "/api/disburse", "PATCH");
+$client_update = new Client($local_url, "/api/disburse", "PATCH");
 
 $list = $body['data'];
 
